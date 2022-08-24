@@ -1,6 +1,6 @@
 package com.tc.tacocloud;
 
-import com.tc.tacocloud.web.HomeController;
+import com.tc.tacocloud.web.OrderController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +9,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)
-public class HomeControllerTest {
+@WebMvcTest(OrderController.class)
+public class OrderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testHomePage() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+    public void testOrderForm() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/orders/current"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("home"))
-                .andExpect(content().string(containsString("Witaj w...")));
+                .andExpect(view().name("orderForm"));
     }
 }

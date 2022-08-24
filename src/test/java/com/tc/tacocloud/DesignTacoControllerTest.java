@@ -1,6 +1,6 @@
 package com.tc.tacocloud;
 
-import com.tc.tacocloud.web.HomeController;
+import com.tc.tacocloud.web.DesignTacoController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,17 @@ import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)
-public class HomeControllerTest {
+@WebMvcTest(DesignTacoController.class)
+public class DesignTacoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testHomePage() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+    public void testShowDesignForm() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/design"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("home"))
-                .andExpect(content().string(containsString("Witaj w...")));
+                .andExpect(view().name("design"))
+                .andExpect(content().string(containsString("Przygotuj własne taco!")));
     }
 }
